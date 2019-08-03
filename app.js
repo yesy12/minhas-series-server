@@ -1,11 +1,18 @@
 const express = require('express')
 const app = express()
+var cors = require('cors')
 const path = require('path')
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.json({ extended: true }))
 
 const routes = require('./routes')
+app.use(cors()).then( ()=>{
+  console.log("foi")
+})
+.catch((error) =>{
+  console.log(error)
+})
 app.use(routes)
 
 if (process.env.NODE_ENV === 'production') {
